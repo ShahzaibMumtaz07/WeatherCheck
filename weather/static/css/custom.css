@@ -1,0 +1,20 @@
+body {
+  background-color: #f5f9fa;
+  font-family: "Barlow", sans-serif;
+  font-size: 16px;
+}
+.navbar {
+  height: 100px;
+}
+.name {
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.predict {
+  color: #757575;
+}
+.content .list-group-item{
+    background-color: #212121;
+    color: #ffffff;
+}

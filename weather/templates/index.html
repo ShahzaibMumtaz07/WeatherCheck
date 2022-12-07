@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block indexPage %}
+    <div class="search d-flex flex-column flex-md-column align-items-center mx-auto" 
+    style="width: 450px">
+        <form action="" method="post" class="form w-100">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <input  id="city" name="city" type="text" class="form-control" placeholder="City Name" aria-label="City" aria-describedby="basic-addon2" value = {{city}} >
+                <div class="input-group-append">
+                    <button id="search_submit" type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% if success %}
+        <div class="d-flex flex-column flex-md-column align-items-center mx-auto bg-white border-bottom shadow-sm pt-5"
+        style="width: 450px">
+            <div class="head d-flex flex-column w-100">
+                <span class="text-center name">{{ city }}</span>
+                <span class="text-center predict">{{ desc }}</span>
+                <span class="text-center icon">
+                    <img class="wi-day-sunny-overcast" src="http://openweathermap.org/img/wn/{{ icon }}@2x.png" alt="weather icon">
+                </span>
+            </div>
+            <div class="content w-100 mt-5">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">{% trans "Temperature" %} <span>{{ temp }}&#8451;</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">{% trans "Max Temperature" %} <span>{{ temp_max }}&#8451;</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">{% trans "Min Temperature" %} <span>{{ temp_min }}&#8451;</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">{% trans "Humidity" %} <span>{{ humidity }}</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">{% trans "Pressure" %} <span>{{ pressure }}</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">{% trans "Wind Speed" %} <span>{{ wind_speed }}</span></li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">{% trans "Wind Direction" %} <span>{{ wind_direction }}</span></li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+    {% if error %}
+        <div class="d-flex flex-column flex-md-column align-items-center mx-auto bg-white border-bottom shadow-sm pt-5"
+        style="width: 450px">
+            <div class="head d-flex flex-column w-100">
+                <span class="text-center name">{{ city }}</span>
+                <span class="text-center predict text-danger">{{ error }}</span>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
