@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      dockerfile: Dockerfile
+      context: ./
+      target: web
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    entrypoint:
+      - ./entrypoints/entrypoint.sh
+  db:
+    image: postgres:13-alpine
+    ports:
+      - "5432"
+    volumes:
+      - psql_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+  redis:
+    image: 'redis:latest'
+volumes:
+  psql_data:
