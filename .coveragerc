@@ -1,0 +1,8 @@
+[run]
+source = ./weather_app
+omit = ./weather_app/tests/*
+	*__init__*
+	*admin*
+	manage.py
+	*migrations/*
+	*apps.py
